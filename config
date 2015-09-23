@@ -1,4 +1,6 @@
 import configparser
+import base64
+
 
 config = configparser.ConfigParser()
 
@@ -8,8 +10,25 @@ config.sections()
 # Bind IP & Command
 IPaddr = config['Default']['IP']
 Command = config['Default']['COMMAND']
+encusername = config['Default']['USERNAME']
+encpassword = config['Default']['PASSWORD']
+username = base64.decodebytes(str.encode(encusername))
+password = base64.decodebytes(str.encode(encpassword))
+
 
 # Print it
-print(IPaddr, Command)
-print(type(IPaddr), type(Command))
+print(encusername, encpassword)
+print('-'*100)
+print(username, password)
 
+
+
+
+# write file
+"""config['Default'] = {"IP": '1.1.1.1',
+                     'COMMAND': 'uname -r'
+                     }
+
+with open('example.ini', 'w') as configfile:
+    config.write(configfile)
+"""
