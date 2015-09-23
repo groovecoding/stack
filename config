@@ -1,0 +1,15 @@
+import configparser
+
+config = configparser.ConfigParser()
+
+# load file
+config.read('example.ini')
+config.sections()
+# Bind IP & Command
+IPaddr = config['Default']['IP']
+Command = config['Default']['COMMAND']
+
+# Print it
+print(IPaddr, Command)
+print(type(IPaddr), type(Command))
+
